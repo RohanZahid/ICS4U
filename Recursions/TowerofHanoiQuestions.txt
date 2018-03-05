@@ -1,0 +1,33 @@
+The Tower of Hanoi:
+2.a) 
+1 disk: 1 move
+2 disks: 3 moves
+3 disks: 7 moves
+4 disks: 15 moves
+5 disks: 31 moves
+6 disks: 63 moves 
+Moves = 2^n - 1
+
+2.b)
+Solve(3, A, B, C)
+	Solve (2, A, C, B)
+		Solve(1, A, B, C)
+			Solve(0, A, C, B)
+			Move A to C
+			Solve(0, B, A, C)
+		Move A to B
+		Solve (1, C, A, B)
+			Solve(0, C, B, A)
+			Move C to B
+			Solve(0, A, C, B)
+	Move A to C
+	Solve(2, B, A, C)
+		Solve(1, B, C, A)
+			Solve(0, B, A, C)
+			Move B to A
+			Solve(0, C, B, A)
+		Move B to C
+		Solve(1, A, B, C)
+			Solve(0, A, C, B)
+			Move A to C
+			Solve(0, B, A, C)	
