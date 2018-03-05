@@ -30,102 +30,102 @@ public class RecursionExamples {
 	}
 
 	/**
-	* Passes the binary code, a counter, and a value holder to helperMethod and passes the returned value and a value holder to helperMethod4.
+	* Passes the binary code, a counter, and a value holder to binToDec and passes the returned value and a value holder to decToOctal.
 	* @param n
 	* The bin code inputted by the user.
 	* @return
-	* The returned value of helperMethod4(x, d).
+	* The returned value of decToOctal(x, d).
 	**/
-	private static long binToOctal(long n) {
+	public static long binToOctal(long n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 2 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
-		int x = helperMethod(n, c, d); //The returned value of helperMethod(n, c, d) will be returned which is binary to decimal.
-		return Long.parseLong(helperMethod4(x, d)); //Returns the returned value of helperMethod4(x, d) parsed to long which is deicmal to octal.
+		int x = binToDec(n, c, d); //The returned value of binToDec(n, c, d) will be returned which is binary to decimal.
+		return Long.parseLong(decToOctal(x, d)); //Returns the returned value of decToOctal(x, d) parsed to long which is deicmal to octal.
 		
 	}
 
 	/**
-	* Passes the octal code, a counter, and a value holder to helperMethod3 and passes the returned value and a value holder to helperMethod2.
+	* Passes the octal code, a counter, and a value holder to octalToDec and passes the returned value and a value holder to decToBin.
 	* @param n
 	* The octal code inputted by the user.
 	* @return
-	* The returned value of helperMethod2(y, d).
+	* The returned value of decToBin(x, d).
 	**/
-	private static long octalToBin(int n) {
+	public static long octalToBin(int n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 8 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
-		int x = helperMethod3(n, c, d); //The returned value of helperMethod3(n, c, d) will be returned which is octal to decimal.
-		return Long.parseLong(helperMethod2(x,d)); //Returns the returned value of helperMethod2(x, d) parsed to long which is decimal to binary.
+		int x = octalToDec(n, c, d); //The returned value of octalToDec(n, c, d) will be returned which is octal to decimal.
+		return Long.parseLong(decToBin(x,d)); //Returns the returned value of decToBin(x, d) parsed to long which is decimal to binary.
 	}
 
 	/**
-	* Passes the binary code, a counter, and a value holder to helperMethod and passes the returned value and a value holder to helperMethod6.
+	* Passes the binary code, a counter, and a value holder to binToDec and passes the returned value and a value holder to decToHex.
 	* @param n
 	* The binary code inputted by the user.
 	* @return
-	* The returned value of helperMethod6(x, d).
+	* The returned value of decToHex(x, d).
 	**/
-	private static String binToHex(long n) {
+	public static String binToHex(long n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 2 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
-		int x = helperMethod(n, c, d); //The variable x is given the returned value of helperMethod(n, c, d) which is bin to decimal.
-		return helperMethod6(x, d); //Returns the returned value of helperMethod6(x, d) which is decimal to hex.
+		int x = binToDec(n, c, d); //The variable x is given the returned value of binToDec(n, c, d) which is bin to decimal.
+		return decToHex(x, d); //Returns the returned value of decToHex(x, d) which is decimal to hex.
 	}
 
 	/**
-	* Passes the hex code, a counter, a value holder, and the length of the hex code - 1 to helperMethod5 and passes the returned value and a value holder to helperMethod2.
+	* Passes the hex code, a counter, a value holder, and the length of the hex code - 1 to hexTodec and passes the returned value and a value holder to decToBin.
 	* @param n
 	* The hex code inputted by the user.
 	* @return
-	* The returned value of helperMethod2(y, d).
+	* The returned value of decToBin(y, d).
 	**/
-	private static long hexToBin(String n) {
+	public static long hexToBin(String n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 2 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
 		int i = n.length()-1; //The variable i is given the value of the length of the hex code - 1.
-		int y = helperMethod5(n, c, d, i); //The variable y is given the returned value of helperMethod5(n, c, d, i) which is hex to decimal.
-		return Long.parseLong(helperMethod2(y,d)); //The return of helperMethod2(y, d) parsed to long is returned which is decimal to bin
+		int y = hexTodec(n, c, d, i); //The variable y is given the returned value of hexTodec(n, c, d, i) which is hex to decimal.
+		return Long.parseLong(decToBin(y, d)); //The return of decToBin(y, d) parsed to long is returned which is decimal to bin
 	}
 
 	/**
-	* Passes the hex code, a counter, a value holder, and the length of the hex code - 1 to helperMethod5 and passes the returned value and a value holder to helperMethod4.
+	* Passes the hex code, a counter, a value holder, and the length of the hex code - 1 to hexTodec and passes the returned value and a value holder to decToOctal.
 	* @param n
 	* The hex code inputted by the user.
 	* @return
-	* The returned value of helperMethod4(y, d).
+	* The returned value of decToOctal(y, d).
 	**/
-	private static long hexToOctal(String n) {
+	public static long hexToOctal(String n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 16 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
 		int i = n.length() - 1; //The variable i is given the value of the length of the hex code - 1.
-		int y = helperMethod5(n, c, d, i); //The variable y is given the returned value of helperMethod5(n, c, d, i) which is hex to decimal.
-		return Long.parseLong(helperMethod4(y, d)); //The return of helperMethod4(y, d) parsed to long is returned which is decimal to octal.
+		int y = hexTodec(n, c, d, i); //The variable y is given the returned value of hexTodec(n, c, d, i) which is hex to decimal.
+		return Long.parseLong(decToOctal(y, d)); //The return of decToOctal(y, d) parsed to long is returned which is decimal to octal.
 	}
 
 	/**
-	* Passes the octal code, a counter, and value holder to helperMethod3 and passes the returned value and a value holder to helperMethod6.
+	* Passes the octal code, a counter, and value holder to octalToDec and passes the returned value and a value holder to decToHex.
 	* @param n
 	* The octal code inputted by the user.
 	* @return
-	* The returned value of helperMethod6(x, d).
+	* The returned value of decToHex(x, d).
 	**/
-	private static String octalToHex(int n) {
+	public static String octalToHex(int n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 8 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
-		int x = (helperMethod3(n, c, d)); //The variable x is given the value of the return of heloerMethod3(n, c, d) which is octal to decimal.
-		return helperMethod6(x, d); //The returned value of helperMethod6(x, d) is returned which is decimal to hex.
+		int x = (octalToDec(n, c, d)); //The variable x is given the value of the return of heloerMethod3(n, c, d) which is octal to decimal.
+		return decToHex(x, d); //The returned value of decToHex(x, d) is returned which is decimal to hex.
 	}
 
 	/**
-	* Passes the decimal and value holder to helperMethod6 and returns it.
+	* Passes the decimal and value holder to decToHex and returns it.
 	* @param n
 	* The decimal inputted by the user.
 	* @return
-	* The returned value of helperMethod6(n, d).
+	* The returned value of decToHex(n, d).
 	**/
-	private static String decToHex(int n) {
+	public static String decToHex(int n) {
 		int d = 0; //The value holder is given the value of 0.
-		return helperMethod6(n, d); //The returned value of helperMethod6(n, d) is returned.
+		return decToHex(n, d); //The returned value of decToHex(n, d) is returned.
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class RecursionExamples {
 	* @return
 	* The decimal converted into hex code.
 	**/
-	private static String helperMethod6(int str, int d) {
+	private static String decToHex(int str, int d) {
 		d = 0; //The value holder variable is reset.
 		String o = ""; //The String value holder variable is reset.
 		if (str == 0) //If str is equal to 0, "" is returned.
@@ -158,21 +158,21 @@ public class RecursionExamples {
 			o = "F";
 		else
 			o = d + ""; //o is given the value of d converted into a String.
-		return helperMethod6(str/16, d) + o; //The String value being held is attached to the returned value of helperMethod6(str/16, d).
+		return decToHex(str/16, d) + o; //The String value being held is attached to the returned value of decToHex(str/16, d).
 	}
 
 	/**
-	* Passes the hex code, a counter, and value holder, and the length of the octal code - 1 to helperMethod4 and returns it.
+	* Passes the hex code, a counter, and value holder, and the length of the octal code - 1 to decToOctal and returns it.
 	* @param n
-	* The hex coded inputted by the user.
+	* The hex code inputted by the user.
 	* @return
-	* The returned value of helperMethod5(n, c, d, i).
+	* The returned value of hexTodec(n, c, d, i).
 	**/
-	private static int hexTodec(String n) {
+	public static int hexTodec(String n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 16 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
 		int i = n.length()-1; //The variable i is given the value of the length of the hex code - 1.
-		return helperMethod5(n, c, d, i); //The returned value of helperMethod5(n, c, d, i) will be returned.
+		return hexTodec(n, c, d, i); //The returned value of hexTodec(n, c, d, i) will be returned.
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class RecursionExamples {
 	* @return
 	* The hex code converted into decimal.
 	**/
-	private static int helperMethod5(String n, int c, int d, int i) {
+	private static int hexTodec(String n, int c, int d, int i) {
 		d = 0; //The value holder variable is reset.
 		if (c == n.length()) //If the counter is equal to the length of the hex code, 0 is returned.
 			return 0;
@@ -213,19 +213,19 @@ public class RecursionExamples {
 		else if(n.charAt(i) == 'F') { //If the character at i is the letter F, d is given the value of 15 times 16 to the power of the counter variable c.
 			d = (int) (15*Math.pow(16, c));
 		}
-		return d + helperMethod5(n, c + 1, d, i - 1); //The value being held is added to the returned value of helperMethod5(n, c + 1, d, i - 1).
+		return d + hexTodec(n, c + 1, d, i - 1); //The value being held is added to the returned value of hexTodec(n, c + 1, d, i - 1).
 	}
 
 	/**
-	* Passes the decimal and value holder to helperMethod4 and returns it.
+	* Passes the decimal and value holder to decToOctal and returns it.
 	* @param n
 	* The decimal inputted by the user.
 	* @return
-	* The returned value of helperMethod4(n, d).
+	* The returned value of decToOctal(n, d).
 	**/
-	private static long decToOctal(int n) {
+	public static long decToOctal(int n) {
 		int d = 0; //The value holder is given the value of 0.
-		return Long.parseLong(helperMethod4(n, d)); //Returns the returned value of helperMethod4(n, d) parsed to long.
+		return Long.parseLong(decToOctal(n, d)); //Returns the returned value of decToOctal(n, d) parsed to long.
 	}
 
 	/**
@@ -237,27 +237,27 @@ public class RecursionExamples {
 	* @return
 	* The decimal converted into octal code.
 	**/
-	private static String helperMethod4(int n, int d) {
+	private static String decToOctal(int n, int d) {
 		d = 0; //The value holder variable is reset.
 		String o = ""; //The String value holder variable is reset.
 		if (n == 0) //If n is equal to 0, 0 is returned as a String.
 			return "0";
 		d = n%8; //d is given the value of the remainder of n divided by 8.
 		o = d + ""; //o is given the value of d converted into a String.
-		return helperMethod4(n/8, d) + o; //The returned value of helperMethod4(n/8, d) will be returned.
+		return decToOctal(n/8, d) + o; //The returned value of decToOctal(n/8, d) will be returned.
 	}
 
 	/**
-	* Passes the octal code, a counter, and value holder to helperMethod3 and returns it.
+	* Passes the octal code, a counter, and value holder to octalToDec and returns it.
 	* @param n
 	* The octal code inputted by the user.
 	* @return
-	* The returned value of helperMethod3(n, c, d).
+	* The returned value of octalToDec(n, c, d).
 	**/
-	private static int octalTodec(int n) {
+	public static int octalToDec(int n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 8 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
-		return helperMethod3(n, c, d); //The returned value of helperMethod3(n, c, d) will be returned.
+		return octalToDec(n, c, d); //The returned value of octalToDec(n, c, d) will be returned.
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class RecursionExamples {
 	* @return
 	* The octal code converted into decimal.
 	**/
-	private static int helperMethod3(int n, int c, int d) {
+	private static int octalToDec(int n, int c, int d) {
 		d = 0; //The value holder variable is reset.
 		if (n == 0) //If n is equal to 0, 0 is returned as an integer.
 			return (int) n;
@@ -279,19 +279,19 @@ public class RecursionExamples {
 			d = (int) ((int) (n%10)*Math.pow(8, c));
 		}
 		n = n/10; //n is equal to n divided by 10 to remove the last digit of the octal.
-		return d + helperMethod3(n, c + 1, d); //The value being held is added to the returned value of helperMethod3(n, c + 1, d).
+		return d + octalToDec(n, c + 1, d); //The value being held is added to the returned value of octalToDec(n, c + 1, d).
 	}
 
 	/**
-	* Passes the decimal and value holder to helperMethod2 and returns it.
+	* Passes the decimal and value holder to decToBin and returns it.
 	* @param n
 	* The decimal inputted by the user.
 	* @return
-	* The returned value of helperMethod2(n, d).
+	* The returned value of decToBin(n, d).
 	**/
-	private static long decToBin(int n) {
+	public static long decToBin(int n) {
 		int d = 0; //The value holder is given the value of 0.
-		return Long.parseLong(helperMethod2(n,d)); //Returns the returned value of helperMethod2(n, d) parsed to long.
+		return Long.parseLong(decToBin(n,d)); //Returns the returned value of decToBin(n, d) parsed to long.
 	}
 
 	/**
@@ -303,27 +303,27 @@ public class RecursionExamples {
 	* @return
 	* The decimal converted into binary code.
 	**/
-	private static String helperMethod2(int n, int d) {
+	private static String decToBin(int n, int d) {
 		d = 0; //The value holder variable is reset.
 		String o = ""; //The String value holder variable is reset.
 		if (n == 0) //If n is equal to 0, 0 is returned as a String.
 			return "0";
 		d = n % 2; //d is equal to the remainder of n divided by 2.
 		o = d+ ""; //o is given the value of d converted into a String.
-		return helperMethod2(n/2,d) + o; //The returned value of helperMethod2(n/2, d) will be returned.
+		return decToBin(n/2,d) + o; //The returned value of decToBin(n/2, d) will be returned.
 	}
 
 	/**
-	* Passes the binary code, a counter, and value holder to helperMethod and returns it.
+	* Passes the binary code, a counter, and value holder to binToDec and returns it.
 	* @param n
 	* The binary code inputted by the user.
 	* @return
-	* The returned value of helperMethod(n, c, d).
+	* The returned value of binToDec(n, c, d).
 	**/
-	private static int binToDec(long n) {
+	public static int binToDec(long n) {
 		int c = 0; //The counter is given the value of 0. This will be the exponent that 2 will be raised to.
 		int d = 0; //The value holder is given the value of 0.
-		return helperMethod(n, c, d); //The returned value of helperMethod(n, c, d) will be returned.
+		return binToDec(n, c, d); //The returned value of binToDec(n, c, d) will be returned.
 	}
 
 	/**
@@ -337,7 +337,7 @@ public class RecursionExamples {
 	* @return
 	* The binary code converted into decimal.
 	**/
-	private static int helperMethod(long n, int c, int d) {
+	private static int binToDec(long n, int c, int d) {
 		d = 0; //The value holder variable is reset.
 		if (n == 0) //If n is equal to 0, n is returned as an integer.
 			return (int) n;
@@ -345,7 +345,7 @@ public class RecursionExamples {
 			d = (int) Math.pow(2, c);
 		}
 		n = n/10; //n is divided by 10 to remove the last digit of the binary.
-		return d + helperMethod(n, c + 1, d); //The value being held is added to the returned value of helperMethod(n, c + 1, d).
+		return d + binToDec(n, c + 1, d); //The value being held is added to the returned value of binToDec(n, c + 1, d).
 	}
 
 	/**
@@ -357,7 +357,7 @@ public class RecursionExamples {
 	* @return
 	* a raised to the power of b.
 	**/
-	private static int exponent(int a, int b) {
+	public static int exponent(int a, int b) {
 		if (b == 1) //If b is equal to 1, a is returned.
 			return a;
 		else if (b == 0) //If b is equal to 0, 1 is returned.
@@ -372,7 +372,7 @@ public class RecursionExamples {
 	* @return
 	* Sum of all numbers between 0 and n.
 	**/
-	private static int sum(int n) {
+	public static int sum(int n) {
 		if (n <= 1) //If n is less than or equal to 1, 1 is returned.
 			return 1;
 		return n+sum(n - 1); //n plus the returned value of sum(n - 1) is returned.
@@ -385,7 +385,7 @@ public class RecursionExamples {
 	* @return
 	* The factorial of n.
 	**/
-	private static int factorial(int n) {
+	public static int factorial(int n) {
 		if (n <= 1) //If n is less than or equal to 1, 1 is returned.
 			return 1;
 		return n*factorial(n - 1); //n times the factorial of n - 1 is returned. 
