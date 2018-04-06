@@ -16,12 +16,12 @@ public class Sort {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		//String[] arr = {"Hello", "ZAA", "Cat", "ABC"};;
-		int []arr = {7, 24, 1, 8, 6, 3, 5, 4};
-		//double []arr = {72.2, 21.9, 85.9, 46.8, 62.7, 62.6};
+		//int []arr = {7, 24, 1, 8, 6, 3, 5, 4};
+		double []arr = {72.2, 21.9, 85.9, 46.8, 62.7, 62.6};
 		//selectionSort(arr);
 		//insertionSort(arr);
 		//bubbleSort(arr);
-		quickSort(arr);
+		mergeSort(arr);
 		for(int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + " ");
 		}
@@ -290,125 +290,336 @@ public class Sort {
 	 * @return i+1
 	 * The pivot value.
 	 **/
-		private static int partition(int[] arr, int start, int end) {
-			int i = start-1;
-			for (int j = start; j < end; j++) {
-				if (arr[j] < arr[end]) {
-					i++;
-					swap(arr, i, j);
-				}
+	private static int partition(int[] arr, int start, int end) {
+		int i = start-1;
+		for (int j = start; j < end; j++) {
+			if (arr[j] < arr[end]) {
+				i++;
+				swap(arr, i, j);
 			}
-			swap(arr, i+1, end);
-			return i+1;
+		}
+		swap(arr, i+1, end);
+		return i+1;
 
-		}
-		/**
-		 * Chooses a pivot point. Rearranges the array by placing values larger than the pivot on the right and the values smaller on the left.
-		 * @param arr
-		 * The double array inputted by the user.
-		 * @param start
-		 * From where the partition method should start rearranging.
-		 * @param end
-		 * The last position included in the rearranging.
-		 * @return i+1
-		 * The pivot value.
-		 **/
-		private static int partition(double[] arr, int start, int end) {
-			int i = start-1;
-			for (int j = start; j < end; j++) {
-				if (arr[j] < arr[end]) {
-					i++;
-					swap(arr, i, j);
-				}
+	}
+	/**
+	 * Chooses a pivot point. Rearranges the array by placing values larger than the pivot on the right and the values smaller on the left.
+	 * @param arr
+	 * The double array inputted by the user.
+	 * @param start
+	 * From where the partition method should start rearranging.
+	 * @param end
+	 * The last position included in the rearranging.
+	 * @return i+1
+	 * The pivot value.
+	 **/
+	private static int partition(double[] arr, int start, int end) {
+		int i = start-1;
+		for (int j = start; j < end; j++) {
+			if (arr[j] < arr[end]) {
+				i++;
+				swap(arr, i, j);
 			}
-			swap(arr, i+1, end);
-			return i+1;
+		}
+		swap(arr, i+1, end);
+		return i+1;
 
-		}
-		/**
-		 * Chooses a pivot point. Rearranges the array by placing values larger than the pivot on the right and the values smaller on the left.
-		 * @param arr
-		 * The String array inputted by the user.
-		 * @param start
-		 * From where the partition method should start rearranging.
-		 * @param end
-		 * The last position included in the rearranging.
-		 * @return i+1
-		 * The pivot value.
-		 **/
-		private static int partition(String[] arr, int start, int end) {
-			int i = start-1;
-			for (int j = start; j < end; j++) {
-				if (arr[j].compareTo(arr[end]) < 0) {
-					i++;
-					swap(arr, i, j);
-				}
+	}
+	/**
+	 * Chooses a pivot point. Rearranges the array by placing values larger than the pivot on the right and the values smaller on the left.
+	 * @param arr
+	 * The String array inputted by the user.
+	 * @param start
+	 * From where the partition method should start rearranging.
+	 * @param end
+	 * The last position included in the rearranging.
+	 * @return i+1
+	 * The pivot value.
+	 **/
+	private static int partition(String[] arr, int start, int end) {
+		int i = start-1;
+		for (int j = start; j < end; j++) {
+			if (arr[j].compareTo(arr[end]) < 0) {
+				i++;
+				swap(arr, i, j);
 			}
-			swap(arr, i + 1, end);
-			return i+1;
+		}
+		swap(arr, i + 1, end);
+		return i+1;
 
+	}
+	/**
+	 * Calls the mergeSort helper method to sort the values.
+	 * @param arr
+	 * The integer array inputted by the user.
+	 * @return
+	 * void
+	 **/
+	public static void mergeSort(int[]arr) {
+		mergeSort(arr, 0, arr.length-1);
+	}
+	/**
+	 * Calls the mergeSort helper method to sort the values.
+	 * @param arr
+	 * The double array inputted by the user.
+	 * @return
+	 * void
+	 **/
+	public static void mergeSort(double[]arr) {
+		mergeSort(arr, 0, arr.length-1);
+	}
+	/**
+	 * Calls the mergeSort helper method to sort the values.
+	 * @param arr
+	 * The String array inputted by the user.
+	 * @return
+	 * void
+	 **/
+	public static void mergeSort(String[]arr) {
+		mergeSort(arr, 0, arr.length-1);
+	}
+	/**
+	 * Divides the list into halves. Repeats with the left side of the array. Repeats with the right side of the array. If there are no items remaining, the two halves are merged into a sorted order.
+	 * @param arr
+	 * The integer array inputted by the user.
+	 * @param start
+	 * The beginning position of the array.
+	 * @param end
+	 * The last position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void mergeSort(int[] arr, int start, int end) {
+		if (end-start+1==1) {
+			return;
 		}
-		/**
-		 * Exchanges the values of two positions in an array.
-		 * @param arr
-		 * The integer array inputted by the user.
-		 * @param index1
-		 * The first position of the array.
-		 * @param index2
-		 * The second position of the array.
-		 * @return
-		 * void
-		 **/
-		public void mergeSort(int[]arr) {
-			int mid = arr.length/2;
-			merge(arr, 0, mid, arr.length-1);
-		}
-		private void merge(int[] arr, int start, int mid, int end) {
-			for (int i = 1; i < mid; i++) {
-				for (int j = 0; j < mid; j++) {
-					if (arr[j] < arr[end]) {
-						i++;
-						swap(arr, i, j);
-					}
-					//merge(arr,)
-				}
-			}
-		}
-		private static void swap(int[] arr, int index1, int index2) {
-			int temp = arr[index1];
-			arr[index1] = arr[index2];
-			arr[index2] = temp;
-		}
-		/**
-		 * Exchanges the values of two positions in an array.
-		 * @param arr
-		 * The integer array inputted by the user.
-		 * @param index1
-		 * The first position of the array.
-		 * @param index2
-		 * The second position of the array.
-		 * @return
-		 * void
-		 **/
-		private static void swap(double[] arr, int index1, int index2) {
-			double temp = arr[index1];
-			arr[index1] = arr[index2];
-			arr[index2] = temp;
-		}
-		/**
-		 * Exchanges the values of two positions in an array.
-		 * @param arr
-		 * The integer array inputted by the user.
-		 * @param index1
-		 * The first position of the array.
-		 * @param index2
-		 * The second position of the array.
-		 * @return
-		 * void
-		 **/
-		private static void swap(String[] arr, int index1, int index2) {
-			String temp = arr[index1];
-			arr[index1] = arr[index2];
-			arr[index2] = temp;
+		else {
+			int mid = (end+start)/2;
+			mergeSort(arr, start, mid);
+			mergeSort(arr, mid+1, end);
+			merge(arr, start, mid, end);
 		}
 	}
+	/**
+	 * Divides the list into halves. Repeats with the left side of the array. Repeats with the right side of the array. If there are no items remaining, the two halves are merged into a sorted order.
+	 * @param arr
+	 * The double array inputted by the user.
+	 * @param start
+	 * The beginning position of the array.
+	 * @param end
+	 * The last position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void mergeSort(double[] arr, int start, int end) {
+		if (end-start+1==1) {
+			return;
+		}
+		else {
+			int mid = (end+start)/2;
+			mergeSort(arr, start, mid);
+			mergeSort(arr, mid+1, end);
+			merge(arr, start, mid, end);
+		}
+	}
+	/**
+	 * Divides the list into halves. Repeats with the left side of the array. Repeats with the right side of the array. If there are no items remaining, the two halves are merged into a sorted order.
+	 * @param arr
+	 * The String array inputted by the user.
+	 * @param start
+	 * The beginning position of the array.
+	 * @param end
+	 * The last position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void mergeSort(String[] arr, int start, int end) {
+		if (end-start+1==1) {
+			return;
+		}
+		else {
+			int mid = (end+start)/2;
+			mergeSort(arr, start, mid);
+			mergeSort(arr, mid+1, end);
+			merge(arr, start, mid, end);
+		}
+	}
+	/**
+	 * Merges the two halves into a sorted order.
+	 * @param arr
+	 * The integer array inputted by the user.
+	 * @param start
+	 * The beginning position of the array.
+	 * @param mid
+	 * The middle position of the array.
+	 * @param end
+	 * The last position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void merge(int[] arr, int start, int mid, int end) {
+		int i = start; //The beginning of the left side.
+		int j = mid+1;  //The beginning of the right side.
+		int y = 0; //The beginning of the new array.	
+		int temp[] = new int [end-start+1];
+		for (int x = start; x <= end; x++) {
+			temp[y] = arr[x];
+			y++;
+		}
+		y = 0;
+		while (i <= mid && j <= end) {
+			if (arr[i] <= arr[j]) {
+				temp[y] = arr[i];
+				i++; y++;
+			}
+			else {
+				temp[y] = arr[j];
+				j++; y++;
+			}
+		}
+		while (i <= mid) {
+			temp[y] = arr[i];
+			i++; y++;
+		}
+		while(j<=end) {
+			temp[y] = arr[j];
+			j++; y++;
+		} 
+		y = 0;
+		for (int c = start; c <= end; c++) {
+			arr[c] = temp[y];
+			y++;
+		}
+	}
+	/**
+	 * Merges the two halves into a sorted order.
+	 * @param arr
+	 * The double array inputted by the user.
+	 * @param start
+	 * The beginning position of the array.
+	 * @param mid
+	 * The middle position of the array.
+	 * @param end
+	 * The last position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void merge(double[] arr, int start, int mid, int end) {
+		int i = start; //The beginning of the left side.
+		int j = mid+1;  //The beginning of the right side.
+		int y = 0; //The beginning of the new array.	
+		double temp[] = new double [end-start+1];
+		for (int x = start; x <= end; x++) {
+			temp[y] = arr[x];
+			y++;
+		}
+		y = 0;
+		while (i <= mid && j <= end) {
+			if (arr[i] <= arr[j]) {
+				temp[y] = arr[i];
+				i++; y++;
+			}
+			else {
+				temp[y] = arr[j];
+				j++; y++;
+			}
+		}
+		while (i <= mid) {
+			temp[y] = arr[i];
+			i++; y++;
+		}
+		while(j<=end) {
+			temp[y] = arr[j];
+			j++; y++;
+		} 
+		y = 0;
+		for (int c = start; c <= end; c++) {
+			arr[c] = temp[y];
+			y++;
+		}
+	}
+	/**
+	 * Merges the two halves into a sorted order.
+	 * @param arr
+	 * The String array inputted by the user.
+	 * @param start
+	 * The beginning position of the array.
+	 * @param mid
+	 * The middle position of the array.
+	 * @param end
+	 * The last position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void merge(String[] arr, int start, int mid, int end) {
+		int i = start; //The beginning of the left side.
+		int j = mid+1;  //The beginning of the right side.
+		int y = 0; //The beginning of the new array.	
+		String temp[] = new String [end-start+1];
+		for (int x = start; x <= end; x++) {
+			temp[y] = arr[x];
+			y++;
+		}
+		y = 0;
+		while (i <= mid && j <= end) {
+			if ((arr[i].compareTo(arr[j]) <=0)) {
+				temp[y] = arr[i];
+				i++; y++;
+			}
+			else {
+				temp[y] = arr[j];
+				j++; y++;
+			}
+		}
+		while (i <= mid) {
+			temp[y] = arr[i];
+			i++; y++;
+		}
+		while(j<=end) {
+			temp[y] = arr[j];
+			j++; y++;
+		} 
+		y = 0;
+		for (int c = start; c <= end; c++) {
+			arr[c] = temp[y];
+			y++;
+		}
+	}
+	private static void swap(int[] arr, int index1, int index2) {
+		int temp = arr[index1];
+		arr[index1] = arr[index2];
+		arr[index2] = temp;
+	}
+	/**
+	 * Exchanges the values of two positions in an array.
+	 * @param arr
+	 * The integer array inputted by the user.
+	 * @param index1
+	 * The first position of the array.
+	 * @param index2
+	 * The second position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void swap(double[] arr, int index1, int index2) {
+		double temp = arr[index1];
+		arr[index1] = arr[index2];
+		arr[index2] = temp;
+	}
+	/**
+	 * Exchanges the values of two positions in an array.
+	 * @param arr
+	 * The integer array inputted by the user.
+	 * @param index1
+	 * The first position of the array.
+	 * @param index2
+	 * The second position of the array.
+	 * @return
+	 * void
+	 **/
+	private static void swap(String[] arr, int index1, int index2) {
+		String temp = arr[index1];
+		arr[index1] = arr[index2];
+		arr[index2] = temp;
+	}
+}
