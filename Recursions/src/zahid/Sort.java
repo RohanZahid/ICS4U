@@ -550,6 +550,7 @@ public class Sort {
 	 * The last position of the array.
 	 * @return
 	 * void
+	 * 
 	 **/
 	private static void merge(String[] arr, int start, int mid, int end) {
 		int i = start; //The beginning of the left side.
