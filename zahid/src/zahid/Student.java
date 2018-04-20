@@ -1,16 +1,45 @@
 package zahid;
 /**
- * Mp3Record.java
- * This class will store data for an individual mp3 record.
+ * Student.java
+ * This class will store data for an individual student.
  * April 12, 2018
  * @author Rohan Zahid
  *
  */
 public class Student {
-	
-	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode, phoneNumber;
+	/**
+	 * Sets values for the student record.
+	 * @param firstName the first Name to set
+	 * @param lastName the lastName to set
+	 * @param middleInitials the middleInitials to set
+	 * @param phoneNumber the phone number to set
+	 * @param email the email to set
+	 * @param streetAddress the streetAddress to set
+	 * @param city the city to set
+	 * @param province the province to set
+	 * @param postalCode the postalCode to set
+	 * @param studentNumber the student number to set
+	 */
+	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode;//, phoneNumber;
 	private int studentNumber, grade;// phoneNumber;
-	
+	private long phoneNumber;
+
+	public Student(String firstName, String lastName, String middleInitials, long phoneNumber, String email, String streetAddress, String city, String province, String postalCode, int studentNumber) throws InvalidInputException {
+		super();
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setMiddleInitials(middleInitials);
+		this.setPhoneNumber(phoneNumber);
+		this.setEmail(email);
+		this.setStreetAddress(streetAddress);
+		this.setCity(city);
+		this.setProvince(province);
+		this.setPostalCode(postalCode);
+		this.setStudentNumber(studentNumber);
+	}
+	public Student() {
+		super();
+	}
 	/**
 	 * Returns the first name of this Student
 	 * @return the firstName 
@@ -18,7 +47,7 @@ public class Student {
 	public String getFirstName() {
 		return firstName;
 	}
-	
+
 	/**
 	 * Sets the first name of the Student
 	 * @param firstName the first Name to set
@@ -26,7 +55,7 @@ public class Student {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	/**
 	 * Returns the last name of this Student
 	 * @return the lastName 
@@ -34,7 +63,7 @@ public class Student {
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	/**
 	 * Sets the last name of the Student
 	 * @param lastName the lastName to set
@@ -42,9 +71,9 @@ public class Student {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Returns the middle initials of this Student
 	 * @return the middleInitials
@@ -52,7 +81,7 @@ public class Student {
 	public String getMiddleInitials() {
 		return middleInitials;
 	}
-	
+
 	/**
 	 * Sets the middleInitials of this Student
 	 * @param middleInitials the middleInitials to set
@@ -72,7 +101,9 @@ public class Student {
 	 * Sets the student number of this Student
 	 * @param studentNumber the student number to set
 	 */
-	public void setStudentNumber(int studentNumber) {
+	public void setStudentNumber(int studentNumber) throws InvalidInputException {
+		if (studentNumber <999999999)
+			throw new InvalidInputException("Invalid Input");
 		this.studentNumber = studentNumber;
 	}
 	/**
@@ -93,15 +124,19 @@ public class Student {
 	 * Returns the phoneNumber of this Student
 	 * @return the phoneNumber
 	 */
-	public String getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
 	/**
 	 * Sets the phone number of this Student
 	 * @param phoneNumber the phone number to set
 	 */
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) throws InvalidInputException{
+		if(phoneNumber<1000000000 || phoneNumber > 999999999) {
+			throw new InvalidInputException("Invalid input.");
+		}
 		this.phoneNumber = phoneNumber;
+
 	}
 	/**
 	 * Returns the email of this Student
@@ -110,7 +145,7 @@ public class Student {
 	public String getEmail() {
 		return email;
 	}
-	
+
 	/**
 	 * Sets the email of this Student
 	 * @param email the email to set
@@ -125,7 +160,7 @@ public class Student {
 	public String getStreetAddress() {
 		return streetAddress;
 	}
-	
+
 	/**
 	 * Sets the street address of this Student
 	 * @param streetAddress the street address to set
@@ -140,7 +175,7 @@ public class Student {
 	public String getCity() {
 		return city;
 	}
-	
+
 	/**
 	 * Sets the city of this Student
 	 * @param city the city to set
@@ -155,7 +190,7 @@ public class Student {
 	public String getProvince() {
 		return province;
 	}
-	
+
 	/**
 	 * Sets the province of this Student
 	 * @param province the province to set
@@ -170,7 +205,7 @@ public class Student {
 	public String getPostalCode() {
 		return postalCode;
 	}
-	
+
 	/**
 	 * Sets the postal code of this Student
 	 * @param postalCode the postal code to set
@@ -178,9 +213,9 @@ public class Student {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	
-	
 
-	
+
+
+
 
 }
