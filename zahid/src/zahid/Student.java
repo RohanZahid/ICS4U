@@ -20,11 +20,11 @@ public class Student {
 	 * @param postalCode the postalCode to set
 	 * @param studentNumber the student number to set
 	 */
-	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode;//, phoneNumber;
+	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode, phoneNumber;
 	private int studentNumber, grade;// phoneNumber;
-	private long phoneNumber;
+	
 
-	public Student(String firstName, String lastName, String middleInitials, long phoneNumber, String email, String streetAddress, String city, String province, String postalCode, int studentNumber) throws InvalidInputException {
+	public Student(String firstName, String lastName, String middleInitials, String phoneNumber, String email, String streetAddress, String city, String province, String postalCode, int studentNumber) throws InvalidInputException {
 		super();
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
@@ -37,8 +37,14 @@ public class Student {
 		this.setPostalCode(postalCode);
 		this.setStudentNumber(studentNumber);
 	}
+	public Student(String firstName, String lastName) {
+		super();
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+	}
 	public Student() {
 		super();
+		
 	}
 	/**
 	 * Returns the first name of this Student
@@ -102,7 +108,7 @@ public class Student {
 	 * @param studentNumber the student number to set
 	 */
 	public void setStudentNumber(int studentNumber) throws InvalidInputException {
-		if (studentNumber <999999999)
+		if (studentNumber >999999999)
 			throw new InvalidInputException("Invalid Input");
 		this.studentNumber = studentNumber;
 	}
@@ -124,15 +130,15 @@ public class Student {
 	 * Returns the phoneNumber of this Student
 	 * @return the phoneNumber
 	 */
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 	/**
 	 * Sets the phone number of this Student
 	 * @param phoneNumber the phone number to set
 	 */
-	public void setPhoneNumber(long phoneNumber) throws InvalidInputException{
-		if(phoneNumber<1000000000 || phoneNumber > 999999999) {
+	public void setPhoneNumber(String phoneNumber) throws InvalidInputException{
+		if(phoneNumber.length() !=10) {
 			throw new InvalidInputException("Invalid input.");
 		}
 		this.phoneNumber = phoneNumber;
