@@ -1,5 +1,8 @@
 package zahid;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,10 +10,10 @@ import java.util.Scanner;
 
 
 /**
- * ITunes.java
- * This is a very basic mp3 collection system.
+ * SchoolSystem.java
+ * This is a very student record system.
  * April 4, 2018
- * @author Christina Kemp
+ * @author Rohan Zahid
  *
  */
 public class SchoolSystem {
@@ -28,41 +31,53 @@ public class SchoolSystem {
 		int choice = 0;
 		//int index1 = 0;
 		int index2 = 0;
-		
+
 		//Student[]Student = new Student[100];
 		do{
-			System.out.println("Enter '1' to input a new record. Enter '2' to print one record to screen. Enter '3' to print all records to screen. Enter '4' to quit.");
+			System.out.println("Enter '1' - Input a new record.");
+			System.out.println("Enter '2' - Print one record to screen.");
+			System.out.println("Enter '3' - Print all records to screen.");
+			System.out.println("Enter '4' - Quit.");
 			try {
 				choice = sc.nextInt();
 			}
-			catch(java.util.InputMismatchException e){
-				System.out.println("Enter '1' to input a new record. Enter '2' to print one record to screen. Enter '3' to print all records to screen. Enter '4' to quit.");
+			catch(Exception e){
+				System.out.println("Enter '1' - Input a new record.");
+				System.out.println("Enter '2' - Print one record to screen.");
+				System.out.println("Enter '3' - Print all records to screen.");
+				System.out.println("Enter '4' - Quit.");
 				sc.nextLine();
 			}
 			sc.nextLine();
 			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)) {
-				System.out.println("Enter '1' to input a new record. Enter '2' to print one record to screen. Enter '3' to print all records to screen. Enter '4' to quit.");
+				System.out.println("Enter '1' - Input a new record.");
+				System.out.println("Enter '2' - Print one record to screen.");
+				System.out.println("Enter '3' - Print all records to screen.");
+				System.out.println("Enter '4' - Quit.");
 				try {
 					choice = sc.nextInt();
 				}
-				catch(java.util.InputMismatchException e){
+				catch(Exception e){
 					match = false;
-					System.out.println("Enter '1' to input a new record. Enter '2' to print one record to screen. Enter '3' to print all records to screen. Enter '4' to quit.");
+					System.out.println("Enter '1' - Input a new record.");
+					System.out.println("Enter '2' - Print one record to screen.");
+					System.out.println("Enter '3' - Print all records to screen.");
+					System.out.println("Enter '4' - Quit.");
 					sc.nextLine();
 					choice = sc.nextInt();
 				}
 				sc.nextLine();
 			}
 			if (choice == 1) {
-				
-					createRecord();// creates two new records
+
+				studRecs.add(createRecord());// creates two new records
 			}
 			else if (choice == 2) {
 				System.out.println("Enter the index of the student record in order to print it.");
 				try {
 					index2 = sc.nextInt();
 				}
-				catch(java.util.InputMismatchException e){
+				catch(Exception e){
 					System.out.println("Enter the index of the student record in order to print it.");
 					sc.nextLine();
 					index2 = sc.nextInt();
@@ -75,7 +90,7 @@ public class SchoolSystem {
 
 			}
 		}while (choice!=4);
-		System.out.println("Thank You come again to my chinese restaurant.");
+		System.out.println("Thank You!");
 	}
 
 
@@ -83,9 +98,10 @@ public class SchoolSystem {
 	 * This method will get the information required to set the fields in
 	 * the record.
 	 * @param r the Student to get data for
+	 * @return 
 	 * @throws InvalidInputException 
 	 */
-	public static Student createRecord() throws InputMismatchException, InvalidInputException {
+	public static Student createRecord() throws InvalidInputException {
 
 		System.out.println("Please enter the student's first name:");
 		String firstName = sc.nextLine();
@@ -93,19 +109,6 @@ public class SchoolSystem {
 		String lastName = sc.nextLine();
 		System.out.println("Please enter the student's middle initals:");
 		String middleInitials = sc.nextLine();
-		System.out.println("Please enter the student's phone number:");
-		String phoneNumber = null;
-		do {
-			try {
-				match = false;
-				phoneNumber = sc.nextLine();
-			}catch(InputMismatchException e) {
-				match = true;
-				System.err.println(e.getMessage());
-				System.out.println("Please try again! Enter the student's phone number.");
-				sc.nextLine();
-			}
-		}while(match == true);
 		System.out.println("Please enter the student's email:");
 		String email = sc.nextLine();
 		System.out.println("Please enter the student's street address:");
@@ -116,39 +119,52 @@ public class SchoolSystem {
 		String province = sc.nextLine();
 		System.out.println("Please enter the student's postal code:");
 		String postalCode = sc.nextLine();
+
+		Student r = new Student(firstName, lastName, middleInitials, email, streetAddress, city, province, postalCode);
 		System.out.println("Please enter the student's student number:");
-		int studentNumber = 0;
+		String studentNumber = "";
 		do {
 			try {
 				match = false;
-				studentNumber = sc.nextInt();
-			}catch(InputMismatchException e) {
+				studentNumber = sc.nextLine();
+				r.setStudentNumber(studentNumber);
+			}catch(Exception e) {
 				match = true;
 				System.err.println(e.getMessage());
-				System.out.println("Please try again! Enter the student's student number.");
-				sc.nextLine();
+				//System.out.println("Please try again! Enter the student's student number.");
+
 			}
 		}while(match == true);
-		sc.nextLine();
+		System.out.println("Please enter the student's phone number:");
+		String phoneNumber = "";
+		do {
+			try {
+				match = false;
+				phoneNumber = sc.nextLine();
+				r.setPhoneNumber(phoneNumber);
+			}catch(Exception e) {
+				match = true;
+				System.err.println(e.getMessage());
+				System.out.println("Please try again! Enter the student's phone number.");
+			}
+		}while(match == true);
 		System.out.println("Please enter the student's grade:");
 		int grade = 0;
 		do {
 			try {
 				match = false;
 				grade = sc.nextInt();
-			}catch(InputMismatchException e) {
+				r.setGrade(grade);
+
+			}catch(Exception e) {
 				match = true;
 				System.err.println(e.getMessage());
 				System.out.println("Please try again! Enter the student's grade.");
 				sc.nextLine();
 			}
 		}while(match == true);
-		sc.nextLine();
-		
-		
-		studRecs.add(new Student(firstName, lastName, middleInitials, phoneNumber, email, streetAddress, city, province, postalCode, grade));
-		return null;
-		
+
+		return r;
 	}
 
 	/**
@@ -162,6 +178,19 @@ public class SchoolSystem {
 		for (int i = 0; i < studRecs.size(); i++) {
 			printRecord(studRecs.get(i));
 			System.out.println();
+		}
+	}
+	public static void saveFile() {
+		File file = new File("database.txt");
+		try {
+			PrintStream fps = new PrintStream(file);
+			for (int i = 0; i < studRecs.size(); i++) {
+				fps.println(studRecs.get(i).toString());
+				System.out.println();
+			}
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
 		}
 	}
 

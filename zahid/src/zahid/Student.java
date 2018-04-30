@@ -20,11 +20,11 @@ public class Student {
 	 * @param postalCode the postalCode to set
 	 * @param studentNumber the student number to set
 	 */
-	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode, phoneNumber;
-	private int studentNumber, grade;// phoneNumber;
+	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode, phoneNumber, studentNumber;
+	private int grade;// phoneNumber;
 	
 
-	public Student(String firstName, String lastName, String middleInitials, String phoneNumber, String email, String streetAddress, String city, String province, String postalCode, int studentNumber) throws InvalidInputException {
+	public Student(String firstName, String lastName, String middleInitials, String phoneNumber, String email, String streetAddress, String city, String province, String postalCode, String studentNumber) throws InvalidInputException {
 		super();
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
@@ -45,6 +45,17 @@ public class Student {
 	public Student() {
 		super();
 		
+	}
+	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city, String province, String postalCode) {
+		super();
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setMiddleInitials(middleInitials);
+		this.setEmail(email);
+		this.setStreetAddress(streetAddress);
+		this.setCity(city);
+		this.setProvince(province);
+		this.setPostalCode(postalCode);
 	}
 	/**
 	 * Returns the first name of this Student
@@ -99,7 +110,7 @@ public class Student {
 	 * Returns the student number of this Student
 	 * @return the studentNumber
 	 */
-	public int getStudentNumber() {
+	public String getStudentNumber() {
 		return studentNumber;
 	}
 
@@ -107,9 +118,9 @@ public class Student {
 	 * Sets the student number of this Student
 	 * @param studentNumber the student number to set
 	 */
-	public void setStudentNumber(int studentNumber) throws InvalidInputException {
-		if (studentNumber >999999999)
-			throw new InvalidInputException("Invalid Input");
+	public void setStudentNumber(String studentNumber) throws InvalidInputException {
+		if (studentNumber.length()!=9)
+			throw new InvalidInputException("Please enter a 9-digit student number.");
 		this.studentNumber = studentNumber;
 	}
 	/**
@@ -122,8 +133,11 @@ public class Student {
 	/**
 	 * Sets the grade of this Student
 	 * @param grade the grade to set
+	 * @throws InvalidInputException 
 	 */
-	public void setGrade(int grade) {
+	public void setGrade(int grade) throws InvalidInputException {
+		if (grade < 9||grade > 12)
+			throw new InvalidInputException("Please enter a grade between 9 and 12.");
 		this.grade = grade;
 	}
 	/**
@@ -139,7 +153,7 @@ public class Student {
 	 */
 	public void setPhoneNumber(String phoneNumber) throws InvalidInputException{
 		if(phoneNumber.length() !=10) {
-			throw new InvalidInputException("Invalid input.");
+			throw new InvalidInputException("Please enter a 10-digit phone number.");
 		}
 		this.phoneNumber = phoneNumber;
 
@@ -219,7 +233,9 @@ public class Student {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-
+	public String toString () {
+		return firstName + "," + lastName + "," + middleInitials + "," + phoneNumber + ","; 
+	}
 
 
 
