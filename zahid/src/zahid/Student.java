@@ -24,7 +24,7 @@ public class Student {
 	private int grade;// phoneNumber;
 	
 
-	public Student(String firstName, String lastName, String middleInitials, String phoneNumber, String email, String streetAddress, String city, String province, String postalCode, String studentNumber) throws InvalidInputException {
+	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city, String province, String postalCode, String studentNumber, String phoneNumber, int grade) throws InvalidInputException {
 		super();
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
@@ -234,7 +234,7 @@ public class Student {
 		this.postalCode = postalCode;
 	}
 	public String toString () {
-		return firstName + "," + lastName + "," + middleInitials + "," + phoneNumber + ","; 
+		return firstName + "," + lastName + "," + middleInitials + "," + email + "," + streetAddress + "," + city + "," + province + "," + postalCode + "," + studentNumber + "," + phoneNumber + "," + grade; 
 	}
 
 

@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * SchoolSystem.java
- * This is a very student record system.
+ * This is a student record system.
  * April 4, 2018
  * @author Rohan Zahid
  *
@@ -29,15 +29,14 @@ public class SchoolSystem {
 	static ArrayList<Student> studRecs = new ArrayList<Student>();
 	public static void main(String[] args) throws InvalidInputException {
 		int choice = 0;
-		//int index1 = 0;
 		int index2 = 0;
-
-		//Student[]Student = new Student[100];
 		do{
 			System.out.println("Enter '1' - Input a new record.");
 			System.out.println("Enter '2' - Print one record to screen.");
 			System.out.println("Enter '3' - Print all records to screen.");
-			System.out.println("Enter '4' - Quit.");
+			System.out.println("Enter '4' - Save to file.");
+			System.out.println("Enter '5' - Load from file.");
+			System.out.println("Enter '0' - Quit.");
 			try {
 				choice = sc.nextInt();
 			}
@@ -45,15 +44,19 @@ public class SchoolSystem {
 				System.out.println("Enter '1' - Input a new record.");
 				System.out.println("Enter '2' - Print one record to screen.");
 				System.out.println("Enter '3' - Print all records to screen.");
-				System.out.println("Enter '4' - Quit.");
+				System.out.println("Enter '4' - Save to file.");
+				System.out.println("Enter '5' - Load from file.");
+				System.out.println("Enter '0' - Quit.");
 				sc.nextLine();
 			}
 			sc.nextLine();
-			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)) {
+			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)&&(choice!=5)&&(choice!=0)) {
 				System.out.println("Enter '1' - Input a new record.");
 				System.out.println("Enter '2' - Print one record to screen.");
 				System.out.println("Enter '3' - Print all records to screen.");
-				System.out.println("Enter '4' - Quit.");
+				System.out.println("Enter '4' - Save to file.");
+				System.out.println("Enter '5' - Load from file.");
+				System.out.println("Enter '0' - Quit.");
 				try {
 					choice = sc.nextInt();
 				}
@@ -62,7 +65,9 @@ public class SchoolSystem {
 					System.out.println("Enter '1' - Input a new record.");
 					System.out.println("Enter '2' - Print one record to screen.");
 					System.out.println("Enter '3' - Print all records to screen.");
-					System.out.println("Enter '4' - Quit.");
+					System.out.println("Enter '4' - Save to file.");
+					System.out.println("Enter '5' - Load from file.");
+					System.out.println("Enter '0' - Quit.");
 					sc.nextLine();
 					choice = sc.nextInt();
 				}
@@ -89,7 +94,15 @@ public class SchoolSystem {
 				printRecords();
 
 			}
-		}while (choice!=4);
+			else if (choice == 4) {
+				saveFile();
+
+			}
+			else if (choice == 5) {
+				loadFile();
+
+			}
+		}while (choice!=0);
 		System.out.println("Thank You!");
 	}
 
@@ -181,15 +194,33 @@ public class SchoolSystem {
 		}
 	}
 	public static void saveFile() {
-		File file = new File("database.txt");
 		try {
+			File file = new File("database.txt");
 			PrintStream fps = new PrintStream(file);
+			fps.println(studRecs.size());
 			for (int i = 0; i < studRecs.size(); i++) {
 				fps.println(studRecs.get(i).toString());
-				System.out.println();
 			}
+			fps.close();
 		} catch (FileNotFoundException e) {
-			
+
+			e.printStackTrace();
+		}
+	}
+	public static void loadFile() throws NumberFormatException, InvalidInputException {
+		studRecs.clear();
+		Student s;
+		try {
+			File file = new File("database.txt");
+			Scanner fscan = new Scanner(file);
+			fscan.nextLine();
+			String input = fscan.nextLine();
+			String [] data = input.split(",");
+			s = new Student(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], Integer.parseInt(data[10]));
+			studRecs.add(s);
+			fscan.close();
+		} catch (FileNotFoundException e) {
+
 			e.printStackTrace();
 		}
 	}
