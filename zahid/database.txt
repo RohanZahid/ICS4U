@@ -1,2 +1,4 @@
-1
-Rohan,Zahid,RZ,rohanzahid@gmail.com,369 Jane Street,Toronto,Ontario,M4T 2T1,324988865,4163259888,12
+3
+Rohan,Zahid,RZ,rohanzahid@gmail.com,369 Jane Street,Toronto,Ontario,M4T2T1,324988865,4163259888,12
+Wayne,Chau,WC,wayne@gmail.com,223 Wellwom Road,Toronto,Ontario,m9r1t2,324988888,4162411111,12
+Navtej,Ghataure,NG,vav@google.ca,112 Navigation Street,Toronto,Ontario,M4T2T1,323232323,1211111212,12

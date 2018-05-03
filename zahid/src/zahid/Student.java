@@ -22,7 +22,7 @@ public class Student {
 	 */
 	private String lastName, firstName, middleInitials, email, streetAddress, city, province, postalCode, phoneNumber, studentNumber;
 	private int grade;// phoneNumber;
-	
+
 
 	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city, String province, String postalCode, String studentNumber, String phoneNumber, int grade) throws InvalidInputException {
 		super();
@@ -36,6 +36,7 @@ public class Student {
 		this.setProvince(province);
 		this.setPostalCode(postalCode);
 		this.setStudentNumber(studentNumber);
+		this.setGrade(grade);
 	}
 	public Student(String firstName, String lastName) {
 		super();
@@ -44,9 +45,9 @@ public class Student {
 	}
 	public Student() {
 		super();
-		
+
 	}
-	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city, String province, String postalCode) {
+	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city, String province) {
 		super();
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
@@ -55,7 +56,7 @@ public class Student {
 		this.setStreetAddress(streetAddress);
 		this.setCity(city);
 		this.setProvince(province);
-		this.setPostalCode(postalCode);
+		//this.setPostalCode(postalCode);
 	}
 	/**
 	 * Returns the first name of this Student
@@ -119,8 +120,9 @@ public class Student {
 	 * @param studentNumber the student number to set
 	 */
 	public void setStudentNumber(String studentNumber) throws InvalidInputException {
-		if (studentNumber.length()!=9)
+		if (studentNumber.length()!=9) {
 			throw new InvalidInputException("Please enter a 9-digit student number.");
+		}
 		this.studentNumber = studentNumber;
 	}
 	/**
@@ -136,8 +138,9 @@ public class Student {
 	 * @throws InvalidInputException 
 	 */
 	public void setGrade(int grade) throws InvalidInputException {
-		if (grade < 9||grade > 12)
+		if (grade < 9||grade > 12) {
 			throw new InvalidInputException("Please enter a grade between 9 and 12.");
+		}
 		this.grade = grade;
 	}
 	/**
@@ -216,6 +219,9 @@ public class Student {
 	 * @param province the province to set
 	 */
 	public void setProvince(String province) {
+		postalCode = postalCode.replaceAll(" ", "");
+		province = province.toUpperCase();
+		if(!(province.equals("AB"))||!(province.equals("BC"))||!(province.equals("MB"))||!(province.equals("NB"))||!(province.equals("NL"))||!(province.equals("NT"))||!(province.equals("NS"))||!(province.equals("NU")))//
 		this.province = province;
 	}
 	/**
@@ -229,8 +235,17 @@ public class Student {
 	/**
 	 * Sets the postal code of this Student
 	 * @param postalCode the postal code to set
+	 * @throws InvalidInputException 
 	 */
-	public void setPostalCode(String postalCode) {
+	public void setPostalCode(String postalCode) throws InvalidInputException {
+		postalCode = postalCode.replaceAll(" ", "");
+		postalCode = postalCode.toUpperCase();
+		if(postalCode.length() !=6) {
+			throw new InvalidInputException("Please enter a valid postal code.");
+		}
+		if((Character.isDigit(postalCode.charAt(0))!=false)||(Character.isDigit(postalCode.charAt(1))!=true)||(Character.isDigit(postalCode.charAt(2))!=false)||(Character.isDigit(postalCode.charAt(3))!=true)||(Character.isDigit(postalCode.charAt(4))!=false)||(Character.isDigit(postalCode.charAt(5))!=true)) {
+			throw new InvalidInputException("Please enter a valid postal code.");
+		}
 		this.postalCode = postalCode;
 	}
 	public String toString () {

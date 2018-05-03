@@ -29,7 +29,7 @@ public class SchoolSystem {
 	static ArrayList<Student> studRecs = new ArrayList<Student>();
 	public static void main(String[] args) throws InvalidInputException {
 		int choice = 0;
-		int index2 = 0;
+		int index = 0;
 		do{
 			System.out.println("Enter '1' - Input a new record.");
 			System.out.println("Enter '2' - Print one record to screen.");
@@ -80,14 +80,14 @@ public class SchoolSystem {
 			else if (choice == 2) {
 				System.out.println("Enter the index of the student record in order to print it.");
 				try {
-					index2 = sc.nextInt();
+					index = sc.nextInt();
 				}
 				catch(Exception e){
 					System.out.println("Enter the index of the student record in order to print it.");
 					sc.nextLine();
-					index2 = sc.nextInt();
+					index = sc.nextInt();
 				}
-				printRecord(studRecs.get(index2));
+				printRecord(studRecs.get(index));
 
 			}
 			else if (choice == 3) {
@@ -130,10 +130,23 @@ public class SchoolSystem {
 		String city = sc.nextLine();
 		System.out.println("Please enter the student's province:");
 		String province = sc.nextLine();
-		System.out.println("Please enter the student's postal code:");
-		String postalCode = sc.nextLine();
+		
 
-		Student r = new Student(firstName, lastName, middleInitials, email, streetAddress, city, province, postalCode);
+		Student r = new Student(firstName, lastName, middleInitials, email, streetAddress, city, province);
+		System.out.println("Please enter the student's postal code. 'AB' (Alberta), 'BC' (British Columbia), 'MB' (Manitoba), 'NB' (New Brunswick), 'NL' (Newfoundland and Labrador), 'NT' (Northwest Territories), 'NS' (Nova Scotia), 'NU' (Nunavut), 'ON' (Ontario), 'PE' (Prince Edward Island), 'QC' (Quebec), 'SK' (Saskatchewan), 'YT' (Yukon):");
+		String postalCode = "";
+		do {
+			try {
+				match = false;
+				postalCode = sc.nextLine();
+				r.setPostalCode(postalCode);
+			}catch(Exception e) {
+				match = true;
+				System.err.println(e.getMessage());
+				//System.out.println("Please try again! Enter the student's student number.");
+
+			}
+		}while(match == true);
 		System.out.println("Please enter the student's student number:");
 		String studentNumber = "";
 		do {
@@ -203,24 +216,21 @@ public class SchoolSystem {
 			}
 			fps.close();
 		} catch (FileNotFoundException e) {
-
 			e.printStackTrace();
 		}
 	}
 	public static void loadFile() throws NumberFormatException, InvalidInputException {
 		studRecs.clear();
-		Student s;
 		try {
 			File file = new File("database.txt");
 			Scanner fscan = new Scanner(file);
 			fscan.nextLine();
 			String input = fscan.nextLine();
 			String [] data = input.split(",");
-			s = new Student(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], Integer.parseInt(data[10]));
+			Student s = new Student(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], Integer.parseInt(data[10]));
 			studRecs.add(s);
 			fscan.close();
 		} catch (FileNotFoundException e) {
-
 			e.printStackTrace();
 		}
 	}
