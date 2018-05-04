@@ -6,7 +6,7 @@ package zahid;
  * @author Rohan Zahid
  *
  */
-public class Student {
+public class Student implements Comparable <Student>{
 	/**
 	 * Sets values for the student record.
 	 * @param firstName the first Name to set
@@ -47,7 +47,7 @@ public class Student {
 		super();
 
 	}
-	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city, String province) {
+	public Student(String firstName, String lastName, String middleInitials, String email, String streetAddress, String city) {
 		super();
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
@@ -55,7 +55,7 @@ public class Student {
 		this.setEmail(email);
 		this.setStreetAddress(streetAddress);
 		this.setCity(city);
-		this.setProvince(province);
+		//this.setProvince(province);
 		//this.setPostalCode(postalCode);
 	}
 	/**
@@ -217,11 +217,14 @@ public class Student {
 	/**
 	 * Sets the province of this Student
 	 * @param province the province to set
+	 * @throws InvalidInputException 
 	 */
-	public void setProvince(String province) {
-		postalCode = postalCode.replaceAll(" ", "");
+	public void setProvince(String province) throws InvalidInputException {
+		province = province.replaceAll(" ", "");
 		province = province.toUpperCase();
-		if(!(province.equals("AB"))||!(province.equals("BC"))||!(province.equals("MB"))||!(province.equals("NB"))||!(province.equals("NL"))||!(province.equals("NT"))||!(province.equals("NS"))||!(province.equals("NU")))//
+		if(!(province.equals("AB"))&&!(province.equals("BC"))&&!(province.equals("MB"))&&!(province.equals("NB"))&&!(province.equals("NL"))&&!(province.equals("NT"))&&!(province.equals("NS"))&&!(province.equals("NU"))&&!(province.equals("ON"))&&!(province.equals("PE"))&&!(province.equals("QC"))&&!(province.equals("SK"))&&!(province.equals("YT"))) {//
+			throw new InvalidInputException("Please enter a valid province/territory.");
+		}
 		this.province = province;
 	}
 	/**
@@ -250,6 +253,19 @@ public class Student {
 	}
 	public String toString () {
 		return firstName + "," + lastName + "," + middleInitials + "," + email + "," + streetAddress + "," + city + "," + province + "," + postalCode + "," + studentNumber + "," + phoneNumber + "," + grade; 
+	}
+	public int compareTo(Student r) {
+		if (this.lastName.compareTo(r.lastName)>0) {
+			return lastName.compareTo(r.lastName);
+		}
+		else if (this.lastName.compareTo(r.lastName)<0) {
+			return lastName.compareTo(r.lastName);
+		}
+		else {
+			return 0;
+		}
+	
+		
 	}
 
 

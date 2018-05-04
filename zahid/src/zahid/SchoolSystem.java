@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class SchoolSystem {
 	 */
 	static ArrayList<Student> studRecs = new ArrayList<Student>();
 	public static void main(String[] args) throws InvalidInputException {
-		int choice = 0;
+		int choice = -1;
 		int index = 0;
 		do{
 			System.out.println("Enter '1' - Input a new record.");
@@ -36,6 +37,7 @@ public class SchoolSystem {
 			System.out.println("Enter '3' - Print all records to screen.");
 			System.out.println("Enter '4' - Save to file.");
 			System.out.println("Enter '5' - Load from file.");
+			System.out.println("Enter '6' - Sort.");
 			System.out.println("Enter '0' - Quit.");
 			try {
 				choice = sc.nextInt();
@@ -46,16 +48,18 @@ public class SchoolSystem {
 				System.out.println("Enter '3' - Print all records to screen.");
 				System.out.println("Enter '4' - Save to file.");
 				System.out.println("Enter '5' - Load from file.");
+				System.out.println("Enter '6' - Sort.");
 				System.out.println("Enter '0' - Quit.");
 				sc.nextLine();
 			}
 			sc.nextLine();
-			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)&&(choice!=5)&&(choice!=0)) {
+			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)&&(choice!=5)&&(choice!=6)&&(choice!=0)) {
 				System.out.println("Enter '1' - Input a new record.");
 				System.out.println("Enter '2' - Print one record to screen.");
 				System.out.println("Enter '3' - Print all records to screen.");
 				System.out.println("Enter '4' - Save to file.");
 				System.out.println("Enter '5' - Load from file.");
+				System.out.println("Enter '6' - Sort.");
 				System.out.println("Enter '0' - Quit.");
 				try {
 					choice = sc.nextInt();
@@ -67,9 +71,9 @@ public class SchoolSystem {
 					System.out.println("Enter '3' - Print all records to screen.");
 					System.out.println("Enter '4' - Save to file.");
 					System.out.println("Enter '5' - Load from file.");
+					System.out.println("Enter '6' - Sort.");
 					System.out.println("Enter '0' - Quit.");
 					sc.nextLine();
-					choice = sc.nextInt();
 				}
 				sc.nextLine();
 			}
@@ -102,6 +106,11 @@ public class SchoolSystem {
 				loadFile();
 
 			}
+			else if (choice == 6) {
+				saveFile();
+				Collections.sort(studRecs);
+
+			}
 		}while (choice!=0);
 		System.out.println("Thank You!");
 	}
@@ -128,12 +137,26 @@ public class SchoolSystem {
 		String streetAddress = sc.nextLine();
 		System.out.println("Please enter the student's city:");
 		String city = sc.nextLine();
-		System.out.println("Please enter the student's province:");
-		String province = sc.nextLine();
+		//System.out.println("Please enter the student's province:");
+		
 		
 
-		Student r = new Student(firstName, lastName, middleInitials, email, streetAddress, city, province);
-		System.out.println("Please enter the student's postal code. 'AB' (Alberta), 'BC' (British Columbia), 'MB' (Manitoba), 'NB' (New Brunswick), 'NL' (Newfoundland and Labrador), 'NT' (Northwest Territories), 'NS' (Nova Scotia), 'NU' (Nunavut), 'ON' (Ontario), 'PE' (Prince Edward Island), 'QC' (Quebec), 'SK' (Saskatchewan), 'YT' (Yukon):");
+		Student r = new Student(firstName, lastName, middleInitials, email, streetAddress, city);
+		System.out.println("Please enter the student's province/territory. 'AB' (Alberta), 'BC' (British Columbia), 'MB' (Manitoba), 'NB' (New Brunswick), 'NL' (Newfoundland and Labrador), 'NT' (Northwest Territories), 'NS' (Nova Scotia), 'NU' (Nunavut), 'ON' (Ontario), 'PE' (Prince Edward Island), 'QC' (Quebec), 'SK' (Saskatchewan), 'YT' (Yukon):");
+		String province = "";
+		do {
+			try {
+				match = false;
+				province = sc.nextLine();
+				r.setProvince(province);
+			}catch(Exception e) {
+				match = true;
+				System.err.println(e.getMessage());
+				//System.out.println("Please try again! Enter the student's student number.");
+
+			}
+		}while(match == true);
+		System.out.println("Please enter the student's postal code:");
 		String postalCode = "";
 		do {
 			try {
@@ -171,7 +194,7 @@ public class SchoolSystem {
 			}catch(Exception e) {
 				match = true;
 				System.err.println(e.getMessage());
-				System.out.println("Please try again! Enter the student's phone number.");
+				//System.out.println("Please try again! Enter the student's phone number.");
 			}
 		}while(match == true);
 		System.out.println("Please enter the student's grade:");
@@ -185,7 +208,7 @@ public class SchoolSystem {
 			}catch(Exception e) {
 				match = true;
 				System.err.println(e.getMessage());
-				System.out.println("Please try again! Enter the student's grade.");
+				//System.out.println("Please try again! Enter the student's grade.");
 				sc.nextLine();
 			}
 		}while(match == true);
