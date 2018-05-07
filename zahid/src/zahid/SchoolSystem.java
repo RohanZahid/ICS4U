@@ -38,6 +38,7 @@ public class SchoolSystem {
 			System.out.println("Enter '4' - Save to file.");
 			System.out.println("Enter '5' - Load from file.");
 			System.out.println("Enter '6' - Sort.");
+			System.out.println("Enter '7' - Search.");
 			System.out.println("Enter '0' - Quit.");
 			try {
 				choice = sc.nextInt();
@@ -49,23 +50,25 @@ public class SchoolSystem {
 				System.out.println("Enter '4' - Save to file.");
 				System.out.println("Enter '5' - Load from file.");
 				System.out.println("Enter '6' - Sort.");
+				System.out.println("Enter '7' - Search.");
 				System.out.println("Enter '0' - Quit.");
 				sc.nextLine();
 			}
 			sc.nextLine();
-			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)&&(choice!=5)&&(choice!=6)&&(choice!=0)) {
+			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)&&(choice!=5)&&(choice!=6)&&(choice!=7)&&(choice!=0)) {
 				System.out.println("Enter '1' - Input a new record.");
 				System.out.println("Enter '2' - Print one record to screen.");
 				System.out.println("Enter '3' - Print all records to screen.");
 				System.out.println("Enter '4' - Save to file.");
 				System.out.println("Enter '5' - Load from file.");
 				System.out.println("Enter '6' - Sort.");
+				System.out.println("Enter '7' - Search.");
 				System.out.println("Enter '0' - Quit.");
 				try {
 					choice = sc.nextInt();
 				}
 				catch(Exception e){
-					match = false;
+					//match = false;
 					System.out.println("Enter '1' - Input a new record.");
 					System.out.println("Enter '2' - Print one record to screen.");
 					System.out.println("Enter '3' - Print all records to screen.");
@@ -111,9 +114,22 @@ public class SchoolSystem {
 				Collections.sort(studRecs);
 
 			}
+			else if (choice == 7) {
+				System.out.println("Enter the last name of the student you want to find.");
+				String key = sc.nextLine();
+				//int index1 = Collections.binarySearch(studRecs, key);
+				
+				
+				//searchFile(key);
+			
+
+			}
 		}while (choice!=0);
 		System.out.println("Thank You!");
 	}
+
+
+	
 
 
 	/**
@@ -243,15 +259,18 @@ public class SchoolSystem {
 		}
 	}
 	public static void loadFile() throws NumberFormatException, InvalidInputException {
-		studRecs.clear();
+		//studRecs.clear();
 		try {
 			File file = new File("database.txt");
 			Scanner fscan = new Scanner(file);
+			int size = fscan.nextInt();
 			fscan.nextLine();
-			String input = fscan.nextLine();
-			String [] data = input.split(",");
-			Student s = new Student(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], Integer.parseInt(data[10]));
-			studRecs.add(s);
+			for(int i = 0; i < size; i++) {
+				String input = fscan.nextLine();
+				String [] data = input.split(",");
+				Student s = new Student(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], Integer.parseInt(data[10]));
+				studRecs.add(s);
+			}
 			fscan.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -259,3 +278,5 @@ public class SchoolSystem {
 	}
 
 }
+
+

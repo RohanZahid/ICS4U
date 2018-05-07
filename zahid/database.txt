@@ -1,4 +1,4 @@
 3
+Wayne,Chau,WC,waynechichau@gmail.com,569 Jane Street,Toronto,ON,M9R1T2,323931535,4165885858,12
+Navtej,Ghataure,nav,nav@google.ca,569 Jane Street,Toronto,ON,M9R1T2,323931535,4165885858,12
 Rohan,Zahid,RZ,rohanzahid@gmail.com,569 Jane Street,Toronto,ON,M9R1T2,323931535,4165885858,12
-Wayne,Chau,WC,wayne@mail.com,564 Jane Street,Toronto,MB,M4Y1I2,323654789,4162525252,12
-Navtej,Ghataure,NG,nav@gmail.com,456 Jane Street,Toronto,NL,M7N1Y2,324988888,4162222222,12

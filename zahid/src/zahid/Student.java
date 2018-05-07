@@ -1,4 +1,7 @@
 package zahid;
+
+import java.util.Scanner;
+
 /**
  * Student.java
  * This class will store data for an individual student.
@@ -255,16 +258,59 @@ public class Student implements Comparable <Student>{
 		return firstName + "," + lastName + "," + middleInitials + "," + email + "," + streetAddress + "," + city + "," + province + "," + postalCode + "," + studentNumber + "," + phoneNumber + "," + grade; 
 	}
 	public int compareTo(Student r) {
-		if (this.lastName.compareTo(r.lastName)>0) {
-			return lastName.compareTo(r.lastName);
+		Scanner sc = new Scanner(System.in);
+		boolean match = false;
+		int choice = -1;
+		while((choice !=1)&&(choice!=2)&&(choice!=3)) {
+			System.out.println("Enter 1 - Sort using first name.");
+			System.out.println("Enter 2 - Sort using last name.");
+			System.out.println("Enter 3 - Sort using student number.");
+			do {
+				try {
+					match = false;
+					choice = sc.nextInt();
+				}catch(Exception e) {
+					match = true;
+					sc.nextLine();
+
+				}
+			}while(match == true);
+			sc.nextLine();
 		}
-		else if (this.lastName.compareTo(r.lastName)<0) {
-			return lastName.compareTo(r.lastName);
+		if (choice == 1) {
+			if (this.firstName.compareTo(r.firstName)>0) {
+				return firstName.compareTo(r.firstName);
+			}
+			else if (this.firstName.compareTo(r.firstName)<0) {
+				return firstName.compareTo(r.firstName);
+			}
+			else {
+				return 0;
+			}
 		}
-		else {
-			return 0;
+		else if (choice == 2) {
+			if (this.lastName.compareTo(r.lastName)>0) {
+				return lastName.compareTo(r.lastName);
+			}
+			else if (this.lastName.compareTo(r.lastName)<0) {
+				return lastName.compareTo(r.lastName);
+			}
+			else {
+				return 0;
+			}
 		}
-	
+		else if (choice == 3) {
+			if (this.studentNumber.compareTo(r.studentNumber)>0) {
+				return studentNumber.compareTo(r.studentNumber);
+			}
+			else if (this.studentNumber.compareTo(r.studentNumber)<0) {
+				return studentNumber.compareTo(r.studentNumber);
+			}
+			else {
+				return 0;
+			}
+		}
+		return 0;
 		
 	}
 
