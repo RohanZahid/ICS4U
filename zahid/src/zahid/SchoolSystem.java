@@ -40,20 +40,23 @@ public class SchoolSystem {
 			System.out.println("Enter '6' - Sort.");
 			System.out.println("Enter '7' - Search.");
 			System.out.println("Enter '0' - Quit.");
-			try {
-				choice = sc.nextInt();
-			}
-			catch(Exception e){
-				System.out.println("Enter '1' - Input a new record.");
-				System.out.println("Enter '2' - Print one record to screen.");
-				System.out.println("Enter '3' - Print all records to screen.");
-				System.out.println("Enter '4' - Save to file.");
-				System.out.println("Enter '5' - Load from file.");
-				System.out.println("Enter '6' - Sort.");
-				System.out.println("Enter '7' - Search.");
-				System.out.println("Enter '0' - Quit.");
-				sc.nextLine();
-			}
+			do {
+				try {
+					match = false;
+					choice = sc.nextInt();
+				}catch(Exception e) {
+					match = true;
+					System.out.println("Enter '1' - Input a new record.");
+					System.out.println("Enter '2' - Print one record to screen.");
+					System.out.println("Enter '3' - Print all records to screen.");
+					System.out.println("Enter '4' - Save to file.");
+					System.out.println("Enter '5' - Load from file.");
+					System.out.println("Enter '6' - Sort.");
+					System.out.println("Enter '7' - Search.");
+					System.out.println("Enter '0' - Quit.");
+					sc.nextLine();
+				}
+			}while(match == true);
 			sc.nextLine();
 			while((choice !=1)&&(choice!=2)&&(choice!=3)&&(choice!=4)&&(choice!=5)&&(choice!=6)&&(choice!=7)&&(choice!=0)) {
 				System.out.println("Enter '1' - Input a new record.");
@@ -64,20 +67,23 @@ public class SchoolSystem {
 				System.out.println("Enter '6' - Sort.");
 				System.out.println("Enter '7' - Search.");
 				System.out.println("Enter '0' - Quit.");
-				try {
-					choice = sc.nextInt();
-				}
-				catch(Exception e){
-					//match = false;
-					System.out.println("Enter '1' - Input a new record.");
-					System.out.println("Enter '2' - Print one record to screen.");
-					System.out.println("Enter '3' - Print all records to screen.");
-					System.out.println("Enter '4' - Save to file.");
-					System.out.println("Enter '5' - Load from file.");
-					System.out.println("Enter '6' - Sort.");
-					System.out.println("Enter '0' - Quit.");
-					sc.nextLine();
-				}
+				do {
+					try {
+						match = false;
+						choice = sc.nextInt();
+					}catch(Exception e) {
+						match = true;
+						System.out.println("Enter '1' - Input a new record.");
+						System.out.println("Enter '2' - Print one record to screen.");
+						System.out.println("Enter '3' - Print all records to screen.");
+						System.out.println("Enter '4' - Save to file.");
+						System.out.println("Enter '5' - Load from file.");
+						System.out.println("Enter '6' - Sort.");
+						System.out.println("Enter '7' - Search.");
+						System.out.println("Enter '0' - Quit.");
+						sc.nextLine();
+					}
+				}while(match == true);
 				sc.nextLine();
 			}
 			if (choice == 1) {
@@ -118,10 +124,10 @@ public class SchoolSystem {
 				System.out.println("Enter the last name of the student you want to find.");
 				String key = sc.nextLine();
 				//int index1 = Collections.binarySearch(studRecs, key);
-				
-				
+
+
 				//searchFile(key);
-			
+
 
 			}
 		}while (choice!=0);
@@ -129,7 +135,7 @@ public class SchoolSystem {
 	}
 
 
-	
+
 
 
 	/**
@@ -154,8 +160,8 @@ public class SchoolSystem {
 		System.out.println("Please enter the student's city:");
 		String city = sc.nextLine();
 		//System.out.println("Please enter the student's province:");
-		
-		
+
+
 
 		Student r = new Student(firstName, lastName, middleInitials, email, streetAddress, city);
 		System.out.println("Please enter the student's province/territory. 'AB' (Alberta), 'BC' (British Columbia), 'MB' (Manitoba), 'NB' (New Brunswick), 'NL' (Newfoundland and Labrador), 'NT' (Northwest Territories), 'NS' (Nova Scotia), 'NU' (Nunavut), 'ON' (Ontario), 'PE' (Prince Edward Island), 'QC' (Quebec), 'SK' (Saskatchewan), 'YT' (Yukon):");

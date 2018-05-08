@@ -1,5 +1,6 @@
 package zahid;
 
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -126,6 +127,9 @@ public class Student implements Comparable <Student>{
 		if (studentNumber.length()!=9) {
 			throw new InvalidInputException("Please enter a 9-digit student number.");
 		}
+		if((Character.isDigit(studentNumber.charAt(0))==false)||(Character.isDigit(studentNumber.charAt(1))==false)||(Character.isDigit(studentNumber.charAt(2))==false)||(Character.isDigit(studentNumber.charAt(3))==false)||(Character.isDigit(studentNumber.charAt(4))==false)||(Character.isDigit(studentNumber.charAt(5))==false)||(Character.isDigit(studentNumber.charAt(6))==false)||(Character.isDigit(studentNumber.charAt(7))==false)||(Character.isDigit(studentNumber.charAt(8))==false)) {
+			throw new InvalidInputException("Please enter a valid student number.");
+		}
 		this.studentNumber = studentNumber;
 	}
 	/**
@@ -160,6 +164,9 @@ public class Student implements Comparable <Student>{
 	public void setPhoneNumber(String phoneNumber) throws InvalidInputException{
 		if(phoneNumber.length() !=10) {
 			throw new InvalidInputException("Please enter a 10-digit phone number.");
+		}
+		if((Character.isDigit(phoneNumber.charAt(0))==false)||(Character.isDigit(phoneNumber.charAt(1))==false)||(Character.isDigit(phoneNumber.charAt(2))==false)||(Character.isDigit(phoneNumber.charAt(3))==false)||(Character.isDigit(phoneNumber.charAt(4))==false)||(Character.isDigit(phoneNumber.charAt(5))==false)||(Character.isDigit(phoneNumber.charAt(6))==false)||(Character.isDigit(phoneNumber.charAt(7))==false)||(Character.isDigit(phoneNumber.charAt(8))==false)||(Character.isDigit(phoneNumber.charAt(9))==false)) {
+			throw new InvalidInputException("Please enter a valid phone number.");
 		}
 		this.phoneNumber = phoneNumber;
 
@@ -260,58 +267,78 @@ public class Student implements Comparable <Student>{
 	public int compareTo(Student r) {
 		Scanner sc = new Scanner(System.in);
 		boolean match = false;
-		int choice = -1;
-		while((choice !=1)&&(choice!=2)&&(choice!=3)) {
-			System.out.println("Enter 1 - Sort using first name.");
-			System.out.println("Enter 2 - Sort using last name.");
-			System.out.println("Enter 3 - Sort using student number.");
+		int sort = -1;
+		
+			System.out.println("Enter '1' - Sort using first name.");
+			System.out.println("Enter '2' - Sort using last name.");
+			System.out.println("Enter '3' - Sort using student number.");
 			do {
 				try {
 					match = false;
-					choice = sc.nextInt();
+					sort = sc.nextInt();
 				}catch(Exception e) {
 					match = true;
+					System.out.println("Enter '1' - Sort using first name.");
+					System.out.println("Enter '2' - Sort using last name.");
+					System.out.println("Enter '3' - Sort using student number.");
 					sc.nextLine();
-
 				}
 			}while(match == true);
 			sc.nextLine();
-		}
-		if (choice == 1) {
-			if (this.firstName.compareTo(r.firstName)>0) {
-				return firstName.compareTo(r.firstName);
+			while((sort !=1)&&(sort!=2)&&(sort!=3)) {
+				System.out.println("Enter '1' - Sort using first name.");
+				System.out.println("Enter '2' - Sort using last name.");
+				System.out.println("Enter '3' - Sort using student number.");
+				do {
+					try {
+						match = false;
+						sort = sc.nextInt();
+					}catch(Exception e) {
+						match = true;
+						System.out.println("Enter '1' - Sort using first name.");
+						System.out.println("Enter '2' - Sort using last name.");
+						System.out.println("Enter '3' - Sort using student number.");
+						sc.nextLine();
+					}
+				}while(match == true);
+				sc.nextLine();
 			}
-			else if (this.firstName.compareTo(r.firstName)<0) {
-				return firstName.compareTo(r.firstName);
+
+			if (sort == 1) {
+				if (this.firstName.compareTo(r.firstName)>0) {
+					return firstName.compareTo(r.firstName);
+				}
+				else if (this.firstName.compareTo(r.firstName)<0) {
+					return firstName.compareTo(r.firstName);
+				}
+				else {
+					return 0;
+				}
 			}
-			else {
-				return 0;
+			else if (sort == 2) {
+				if (this.lastName.compareTo(r.lastName)>0) {
+					return lastName.compareTo(r.lastName);
+				}
+				else if (this.lastName.compareTo(r.lastName)<0) {
+					return lastName.compareTo(r.lastName);
+				}
+				else {
+					return 0;
+				}
 			}
-		}
-		else if (choice == 2) {
-			if (this.lastName.compareTo(r.lastName)>0) {
-				return lastName.compareTo(r.lastName);
+			else if (sort == 3) {
+				if (this.studentNumber.compareTo(r.studentNumber)>0) {
+					return studentNumber.compareTo(r.studentNumber);
+				}
+				else if (this.studentNumber.compareTo(r.studentNumber)<0) {
+					return studentNumber.compareTo(r.studentNumber);
+				}
+				else {
+					return 0;
+				}
 			}
-			else if (this.lastName.compareTo(r.lastName)<0) {
-				return lastName.compareTo(r.lastName);
-			}
-			else {
-				return 0;
-			}
-		}
-		else if (choice == 3) {
-			if (this.studentNumber.compareTo(r.studentNumber)>0) {
-				return studentNumber.compareTo(r.studentNumber);
-			}
-			else if (this.studentNumber.compareTo(r.studentNumber)<0) {
-				return studentNumber.compareTo(r.studentNumber);
-			}
-			else {
-				return 0;
-			}
-		}
-		return 0;
-		
+			return 0;
+
 	}
 
 
