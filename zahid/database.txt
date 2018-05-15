@@ -1,5 +1,5 @@
 4
-Boib,Lko,sa,sas,saa,sas,AB,M9Y1T2,333333333,3333333332,12
+Boib,Lko,sa,boib@boi.com,saa,sas,AB,M9Y1T2,333333333,3333333332,12
 Rohan,Zahid,RZ,rohanzahid@gmail.com,569 Jane Street,Toronto,ON,M9R1T2,323931535,4165885858,12
 Wayne,Chau,WC,waynechichau@gmail.com,569 Jane Street,Toronto,ON,M9R1T2,323939535,4165885858,12
 Navtej,Ghataure,nav,nav@google.ca,569 Jane Street,Toronto,ON,M9R1T2,324931535,4165885858,12
